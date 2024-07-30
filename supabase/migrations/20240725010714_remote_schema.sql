@@ -2317,7 +2317,6 @@ CREATE OR REPLACE TRIGGER "trigger_update_status_conversa" AFTER UPDATE ON "publ
 
 CREATE OR REPLACE TRIGGER "verifica_ref_contato" AFTER INSERT OR UPDATE ON "public"."conversas" FOR EACH STATEMENT EXECUTE FUNCTION "public"."insere_contato_e_atualiza_conversa"();
 
-CREATE OR REPLACE TRIGGER "webhookBot" AFTER INSERT ON "public"."webhook" FOR EACH ROW WHEN (("new"."is_edge_function_insert" = false)) EXECUTE FUNCTION "supabase_functions"."http_request"('https://fntyzzstyetnbvrpqfre.supabase.co/functions/v1/bot', 'POST', '{"Content-Type":"application/json", "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZudHl6enN0eWV0bmJ2cnBxZnJlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTExMTM0NzksImV4cCI6MjAwNjY4OTQ3OX0.eaod7DsHG3Pc1ZBFSmvr3r6by-MtNf0hzjgjXzdN3Jk"}', '{}', '2000');
 
 ALTER TABLE ONLY "public"."Bot"
     ADD CONSTRAINT "Bot_id_empresa_fkey" FOREIGN KEY ("id_empresa") REFERENCES "public"."Empresa"("id") ON UPDATE CASCADE ON DELETE CASCADE;
